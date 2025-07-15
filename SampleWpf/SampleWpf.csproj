@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\당근사진1.png" />
+    <None Remove="Images\당근사진2.png" />
+    <None Remove="Images\당근사진3.png" />
+    <None Remove="Images\당근사진4.png" />
+    <None Remove="Images\당근사진5.png" />
+    <None Remove="Images\당근사진6.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="9.0.537" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\당근사진1.png" />
+    <Resource Include="Images\당근사진2.png" />
+    <Resource Include="Images\당근사진3.png" />
+    <Resource Include="Images\당근사진4.png" />
+    <Resource Include="Images\당근사진5.png" />
+    <Resource Include="Images\당근사진6.png" />
+  </ItemGroup>
+
+</Project>

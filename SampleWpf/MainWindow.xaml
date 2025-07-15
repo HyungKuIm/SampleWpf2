@@ -1,0 +1,18 @@
+﻿<Window x:Class="SampleWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SampleWpf"
+        mc:Ignorable="d"
+        WindowStyle="ToolWindow"
+        Title="MainWindow" Height="150" Width="200">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    <StackPanel>
+        <TextBlock Text="사용자 정의 컨트롤 예제" />
+        <local:CustomButtonControl ButtonText="함 눌러봐"
+                                   ButtonCommand="{Binding TestButtonCmd}" />
+    </StackPanel>
+</Window>
