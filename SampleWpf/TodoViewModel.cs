@@ -122,7 +122,7 @@ namespace SampleWpf
             };
             TodoItems.Add(newItem);
             NewTodoText = string.Empty;
-            RefreshStatistics();
+            //RefreshStatistics();
         }
 
         private bool CanAddTodo()
@@ -139,7 +139,7 @@ namespace SampleWpf
                 return;
             }
             TodoItems.Remove(item);
-            RefreshStatistics();
+            //RefreshStatistics();
         }
 
         //private void ToggleComplete(TodoItem item)

@@ -13,9 +13,19 @@
     <Grid>
         <StackPanel Margin="20">
             <StackPanel>
-                <TextBlock Text="{Binding TotalCount}" />
-                <TextBlock Text="{Binding CompletedCount}"/>
-                <TextBlock Text="{Binding UncompletedCount}" />
+                <TextBlock>
+                    <Run Text="총 건수:" />
+                    <Run Text="{Binding TotalCount, StringFormat={}{0:N0}}" />
+                </TextBlock>
+                <TextBlock>
+                    <Run Text="완료 건수:" />
+                    <Run Text="{Binding CompletedCount, StringFormat={}{0:N0}}" />
+                </TextBlock>
+                <TextBlock>
+                    <Run Text="미완료 건수:" />
+                    <Run Text="{Binding UncompletedCount, StringFormat={}{0:N0}}" />
+                </TextBlock>
+                
             </StackPanel>
             
             <TextBox Width="300"
