@@ -15,11 +15,19 @@
             <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Margin="10">
+        <!--<StackPanel Grid.Column="0" Margin="10">
             <Button Content="아낌없이 주는 나무" Command="{Binding OpenPdfCommand}" CommandParameter="1.아낌없이주는나무"/>
             <Button Content="너구리의 후회" Command="{Binding OpenPdfCommand}" CommandParameter="15.너구리의후회"/>
             <Button Content="충성스런 개" Command="{Binding OpenPdfCommand}" CommandParameter="7.충성스런+개"/>
-        </StackPanel>
+        </StackPanel>-->
+        <ListBox ItemsSource="{Binding Books}" SelectedItem="{Binding ActiveBook}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton Content="{Binding Title}" GroupName="BooksGroup"
+                                 IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=IsSelected, Mode=TwoWay}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <!--<wfi:WindowsFormHost x:Name="pdfHost"/>-->
         <wfi:WindowsFormsHost x:Name="pdfHost" Grid.Column="1"/>
     </Grid>
