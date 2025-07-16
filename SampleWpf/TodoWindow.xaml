@@ -12,7 +12,12 @@
     </Window.DataContext>
     <Grid>
         <StackPanel Margin="20">
-
+            <StackPanel>
+                <TextBlock Text="{Binding TotalCount}" />
+                <TextBlock Text="{Binding CompletedCount}"/>
+                <TextBlock Text="{Binding UncompletedCount}" />
+            </StackPanel>
+            
             <TextBox Width="300"
                  Text="{Binding NewTodoText, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="0,0,0,10"/>
