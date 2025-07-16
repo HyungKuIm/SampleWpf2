@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace SampleWpf
 {
@@ -16,6 +17,28 @@ namespace SampleWpf
         private TodoItem _selectedItem;  // 선택한 Todo 아이템
 
         public ObservableCollection<TodoItem> TodoItems { get; } = new();  //  Todo 아이템 목록
+
+        private ICollectionView _todoItemsView;
+        public ICollectionView TodoItemsView
+        {
+            get => _todoItemsView;
+            set => SetProperty(ref _todoItemsView, value);
+        }
+
+        private FilterType _selectedFilter = FilterType.All;
+        public FilterType SelectedFilter
+        {
+            get => _selectedFilter;
+            set
+            {
+                SetProperty(ref _selectedFilter, value);
+                //ApplyFilter();
+                TodoItemsView.Refresh();
+            }
+        }
+
+        // 필터 선택지 목록
+        public IEnumerable<FilterType> Filters => Enum.GetValues(typeof(FilterType)).Cast<FilterType>();
 
         // 프로퍼티
         public string NewTodoText
@@ -59,6 +82,10 @@ namespace SampleWpf
 
         public TodoViewModel()
         {
+            // View 생성 및 필터 연결
+            TodoItemsView = CollectionViewSource.GetDefaultView(TodoItems);
+            TodoItemsView.Filter = FilterTodoItem;
+
             AddCommand = new DelegateCommand(AddTodo, CanAddTodo)
                             .ObservesProperty(() => NewTodoText);
 
@@ -71,6 +98,20 @@ namespace SampleWpf
             {
                 SubscribeToItem(item);  
             }
+        }
+
+        private bool FilterTodoItem(object obj)
+        {
+            if (obj is not TodoItem item)
+                return false;
+
+            return SelectedFilter switch
+            {
+                FilterType.All => true,
+                FilterType.Completed => item.IsComplete,
+                FilterType.Uncompleted => !item.IsComplete,
+                _ => true
+            };
         }
 
         private void SubscribeToItem(TodoItem item)

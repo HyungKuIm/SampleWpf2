@@ -27,6 +27,10 @@
                 </TextBlock>
                 
             </StackPanel>
+            <ComboBox ItemsSource="{Binding Filters}"
+              SelectedItem="{Binding SelectedFilter}"
+              Width="200"
+              Margin="0,0,0,10" />
             
             <TextBox Width="300"
                  Text="{Binding NewTodoText, UpdateSourceTrigger=PropertyChanged}" 
@@ -35,7 +39,7 @@
                 Command="{Binding AddCommand}" 
                 Width="100" Margin="0,0,0,20"/>
 
-            <ItemsControl ItemsSource="{Binding TodoItems}">
+            <ItemsControl ItemsSource="{Binding TodoItemsView}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Margin="5">
