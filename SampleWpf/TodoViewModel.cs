@@ -154,6 +154,11 @@ namespace SampleWpf
                 }
             }
 
+
+            //CollectionChanged 이벤트를 구독하고 있는 경우
+            //컬렉션에서 항목이 삭제되거나 교체되는 경우 
+            //삭제된 항목에 연결된 이벤트 핸들러를 정리(해제)하기 위해 
+            //  메모리 누수나 이벤트 중복방지를 위해
             if (e.OldItems != null)
             {
                 foreach (TodoItem item in e.OldItems)

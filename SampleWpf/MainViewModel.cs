@@ -14,7 +14,7 @@ internal class MainViewModel : BindableBase
     {
         TestButtonCmd = new DelegateCommand(() =>
         {
-            MessageBox.Show("버튼을 클릭하셨습니다");
+            System.Windows.MessageBox.Show("버튼을 클릭하셨습니다");
         });
     }
 }
