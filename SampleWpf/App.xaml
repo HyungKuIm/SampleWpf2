@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:SampleWpf"
              StartupUri="Window2.xaml">
     <Application.Resources>
-         
+        <ControlTemplate x:Key="HiddenListBoxTemplate" TargetType="{x:Type ListBox}">
+            <Border BorderThickness="0" BorderBrush="{x:Null}" SnapsToDevicePixels="True" Background="Transparent">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Focusable="False">
+                    <ItemsPresenter Margin="0" />
+                </ScrollViewer>
+            </Border>
+        </ControlTemplate>
     </Application.Resources>
 </Application>
