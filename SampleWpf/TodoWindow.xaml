@@ -33,7 +33,7 @@
               Margin="0,0,0,10" />
             
             <TextBox Width="300"
-                 Text="{Binding NewTodoText, UpdateSourceTrigger=PropertyChanged}" 
+                 Text="{Binding NewTodoText, UpdateSourceTrigger=PropertyChanged}"
                  Margin="0,0,0,10"/>
             <Button Content="Add Todo"
                 Command="{Binding AddCommand}" 

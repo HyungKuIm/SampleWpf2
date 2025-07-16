@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
@@ -86,6 +87,9 @@ namespace SampleWpf
             TodoItemsView = CollectionViewSource.GetDefaultView(TodoItems);
             TodoItemsView.Filter = FilterTodoItem;
 
+            // ✅ 정렬 설정
+            SortSetting();
+
             AddCommand = new DelegateCommand(AddTodo, CanAddTodo)
                             .ObservesProperty(() => NewTodoText);
 
@@ -98,6 +102,13 @@ namespace SampleWpf
             {
                 SubscribeToItem(item);  
             }
+        }
+
+        private void SortSetting()
+        {
+            TodoItemsView.SortDescriptions.Clear();
+            TodoItemsView.SortDescriptions.Add(new SortDescription(nameof(TodoItem.IsComplete), ListSortDirection.Ascending));
+            TodoItemsView.SortDescriptions.Add(new SortDescription(nameof(TodoItem.Text), ListSortDirection.Ascending));
         }
 
         private bool FilterTodoItem(object obj)
@@ -129,6 +140,7 @@ namespace SampleWpf
             if (e.PropertyName == nameof(TodoItem.IsComplete))
             {
                 RefreshStatistics();
+                SortSetting();
             }
         }
 
