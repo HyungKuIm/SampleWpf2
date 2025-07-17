@@ -40,6 +40,22 @@ namespace SampleWpf
 
                 }
             };
+
+            Closed += (s, e) =>
+            {
+                // 창이 닫힐 때 Action 제거 → 이후 PDF 열기 시도 방지
+                if (DataContext is EBookViewModel vm)
+                {
+                    vm.ShowPdfViewerAction = null;
+                }
+
+                // pdfViewer.Dispose() 도 고려
+                if (pdfHost.Child is PdfViewer pdfViewer)
+                {
+                    pdfViewer.Document?.Dispose();
+                    pdfViewer.Dispose();
+                }
+            };
             
         }
 
