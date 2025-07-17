@@ -20,7 +20,10 @@ namespace SampleWpf
                 if (SetProperty(ref _activeBook, value))
                 {
                     // 자동으로 OpenPdfCommand 실행
-                    OpenPdfCommand.Execute(value.FileName);
+                    if (ShowPdfViewerAction != null && value != null)
+                    {
+                        OpenPdfCommand.Execute(value.FileName);
+                    }
                 }
             }
         }
@@ -41,6 +44,11 @@ namespace SampleWpf
             Books.Add(new BookModel { Title = "아낌없이 주는 나무", FileName = "1.아낌없이주는나무" });
             Books.Add(new BookModel { Title = "너구리의 후회", FileName = "15.너구리의후회" });
             Books.Add(new BookModel { Title = "충성스런 개", FileName = "7.충성스런+개" });
+
+            if (Books.Count > 0)
+            {
+                ActiveBook = Books[0];
+            }
         }
 
         // 이 Action은 View에서 바인딩할 예정

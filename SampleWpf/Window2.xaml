@@ -22,10 +22,17 @@
         </StackPanel>-->
         <ListBox ItemsSource="{Binding Books}" SelectedItem="{Binding ActiveBook}" Template="{StaticResource HiddenListBoxTemplate}"
                  HorizontalContentAlignment="Stretch" Margin="0,20,0,0">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <RadioButton Content="{Binding Title}" GroupName="BooksGroup"
-                                 IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=IsSelected, Mode=TwoWay}">
+                                 IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=IsSelected, Mode=TwoWay, FallbackValue=False}">
                         <RadioButton.Template>
                             <ControlTemplate TargetType="{x:Type RadioButton}">
                                 <Border Name="Border" BorderBrush="White" BorderThickness="2"

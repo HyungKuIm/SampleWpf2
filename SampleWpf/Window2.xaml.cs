@@ -24,13 +24,23 @@ namespace SampleWpf
         {
             InitializeComponent();
             //LoadPdf("pdf/1.아낌없이주는나무.pdf");
-            if (DataContext is EBookViewModel vm)
+            Loaded += (s, e) =>
             {
-                vm.ShowPdfViewerAction = pdfViewer =>
+                if (DataContext is EBookViewModel vm)
                 {
-                    pdfHost.Child = pdfViewer;
-                };
-            }
+                    vm.ShowPdfViewerAction = pdfViewer =>
+                    {
+                        pdfHost.Child = pdfViewer;
+                    };
+
+                    if (vm.ActiveBook != null)
+                    {
+                        vm.OpenPdfCommand.Execute(vm.ActiveBook.FileName);
+                    }
+
+                }
+            };
+            
         }
 
         private void LoadPdf(string filePath)
